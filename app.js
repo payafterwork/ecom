@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const expressValidator = require('express-validator');
 
 
 require('dotenv').config()
@@ -26,13 +27,13 @@ mongoose
     })
     .then(() => console.log('DB Connected'));
 
-
-
  // middlewares
- app.use(bodyParser.json()); 
+app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cookieParser());   
+app.use(expressValidator());
+
 
 
 const port = process.env.PORT || 8000
