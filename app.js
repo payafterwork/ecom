@@ -3,21 +3,24 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 //routes
-const userRoutes = require('./routes/user.js');
+const userRoutes = require('./routes/user');
 
 
 
 //app
 const app = express()
 
-//db
+app.use("/api",userRoutes);
 
-mongoose.connect(process.env.DATABASE_LOCAL).then(()=>{
-	console.log('DB connected')
-})
+// db
+mongoose
+    .connect(process.env.DATABASE, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true 
+    })
+    .then(() => console.log('DB Connected'));
 
-
-app.get('/api', userRoutes);
 
 const port = process.env.PORT || 8000
 
