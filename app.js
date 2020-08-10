@@ -11,16 +11,14 @@ require('dotenv').config()
 //routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
-
-
-
+const categoryRoutes = require('./routes/category');
 
 //app
 const app = express()
 
 app.use("/api",authRoutes);
 app.use("/api",userRoutes);
-
+app.use("/api",categoryRoutes);
 
 // db
 mongoose
@@ -37,8 +35,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cookieParser());   
 app.use(expressValidator());
-
-
 
 const port = process.env.PORT || 8000
 
