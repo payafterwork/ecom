@@ -10,6 +10,8 @@ require('dotenv').config()
 
 //routes
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
+
 
 
 
@@ -17,6 +19,8 @@ const authRoutes = require('./routes/auth');
 const app = express()
 
 app.use("/api",authRoutes);
+app.use("/api",userRoutes);
+
 
 // db
 mongoose
